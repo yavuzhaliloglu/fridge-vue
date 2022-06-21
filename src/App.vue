@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import FridgeComponent from './components/FridgeComponent.vue';
 
 </script>
 
