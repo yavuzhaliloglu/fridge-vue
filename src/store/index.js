@@ -12,13 +12,26 @@ const store = createStore({
             {id:6,vol:10,name:"muz",img:'https://pngimg.com/uploads/banana/banana_PNG852.png'},
             {id:7,vol:25,name:"karpuz",img:'https://pngimg.com/uploads/watermelon/watermelon_PNG234.png'},
         ],
-        productsinfridge:[]
+        productsinfridge:[],
     },
     mutations:{
+        ADD_PRODUCT:(state,item)=>{
+            // state.products.forEach((item)=>{
+            //     if(item.id === id){
+            //         productsinfridge.push(item);
+            //     }
+            // })
+            // console.log(item);
 
+            state.productsinfridge.push(item);
+            console.log(item);
+            console.log(state.productsinfridge)
+        }
     },
     actions:{
-
+        addProductToFridge:({commit},product)=>{
+            commit('ADD_PRODUCT',product)
+        }
     },
     getters:{
         getFridgeVol(state){

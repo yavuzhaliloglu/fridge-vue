@@ -1,27 +1,24 @@
 <template>
     <div class="products-container">
         <div class="product-item" v-for="(product, item) in products" :key="item">
-            <img class="product-img" :src=product.img alt="" />
-            <div>{{ product.name }}</div>
-            <button class="addProduct">Ekle</button>
-            <button class="removeProduct">Çıkar</button>
+            <ProductForFridge :product="product"/>
         </div>
     </div>
 </template>
 
 <script>
+import ProductForFridge from "./ProductForFridge.vue";
 export default {
     props: {
         products: {
             type: Array,
             required: true
-        }
+        },
     },
-
     data() {
-        return {
-        }
-    }
+        return {};
+    },
+    components: { ProductForFridge }
 }
 </script>
 
@@ -34,9 +31,5 @@ export default {
         margin: 0 30px;
     }
 
-    .product-img {
-        max-width: 100px;
-        max-height: 100px;
-    }
 }
 </style>
