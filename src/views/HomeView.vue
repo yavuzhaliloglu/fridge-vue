@@ -11,7 +11,7 @@ const getproducts = computed(() => {return products.value})
 <template>
   <main>
     <div>
-      <FridgeComponent :fridgevol="fridgevol" />
+      <FridgeComponent :products="productsinfridge" :fridgevol="fridgevol" />
       <ProductsComponent :products="products" />
     </div>
   </main>
@@ -33,8 +33,16 @@ export default {
     products() {
       return this.$store.getters.getProducts
     },
-    fridgevol(){
-      return this.$store.getters.getFridgeVol
+    productsinfridge() {
+      return this.$store.getters.getFridgeProducts
+    },
+    fridgevol() {
+      let fvol = this.$store.state.fridgevol;
+      let total = 0;
+      this.productsinfridge.forEach(item=>{
+          total+=item.vol
+      });
+      return fvol - total;
     }
   }
 }

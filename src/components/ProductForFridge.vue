@@ -3,7 +3,7 @@
         <img class="product-img" :src=product.img alt="" />
         <div>{{ product.name }}</div>
         <button @click="addProduct()" class="addProduct">Ekle</button>
-        <button class="removeProduct">Çıkar</button>
+        <button @click="removeProduct(product)" class="removeProduct">Çıkar</button>
     </div>
 </template>
 
@@ -23,6 +23,9 @@ export default {
     methods:{
         addProduct(){
             this.$store.dispatch('addProductToFridge',this.product)
+        },
+        removeProduct(product){
+            this.$store.dispatch('removeProductFromFridge',product)
         }
     }
 }
