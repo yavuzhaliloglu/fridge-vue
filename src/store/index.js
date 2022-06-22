@@ -44,7 +44,7 @@ const store = createStore({
         },
         showVol:({commit},products) =>{
             commit('SHOW_VOLUME',products)
-        }
+        },
     },
     getters: {
         getFridgeVol(state) {
@@ -56,7 +56,6 @@ const store = createStore({
         getFridgeProducts(state) {
             return state.productsinfridge;
         }
-
     }
 
 
