@@ -1,5 +1,5 @@
 <template>
-    <div class="products-container">
+    <div class="products-container mx-auto">
         <div class="product-item" v-for="(product, item) in products" :key="item">
             <ProductForFridge :product="product"/>
         </div>
@@ -26,7 +26,7 @@ export default {
 .products-container {
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: space-evenly;
     .product-item {
         margin: 0 30px;
     }

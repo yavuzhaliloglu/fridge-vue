@@ -10,7 +10,7 @@ const getproducts = computed(() => {return products.value})
 
 <template>
   <main>
-    <div>
+    <div class="main">
       <FridgeComponent :products="productsinfridge" :fridgevol="fridgevol" />
       <ProductsComponent :products="products" />
     </div>
@@ -49,6 +49,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main{
+  height: 100vh;
+}
+
 </style>
 
 
