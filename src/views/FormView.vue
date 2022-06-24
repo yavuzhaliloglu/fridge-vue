@@ -8,24 +8,24 @@
         <form class="form my-4 mx-auto p-5" @submit.prevent="handleSubmit">
             <div class="name mb-2">
                 <label class="form-label" for="name">Adınız</label>
-                <input class="form-control" type="text" id="name" required v-model="name">
+                <input class="form-control" type="text" id="name" required v-model="obj.name">
             </div>
             <div class="surname mb-2">
                 <label class="form-label" for="surname">Soyadınız</label>
-                <input class="form-control" type="text" id="surname" required v-model="surname">
+                <input class="form-control" type="text" id="surname" required v-model="obj.surname">
             </div>
             <div class="city mb-2">
                 <label class="form-label" for="city">Şehir</label>
-                <input class="form-control" type="text" id="city" required v-model="city">
+                <input class="form-control" type="text" id="city" required v-model="obj.city">
             </div>
             <div class="address mb-2">
                 <label class="form-label" for="address">Adres</label>
-                <textarea class="form-control" name="address" id="address" v-model="address" cols="30"
+                <textarea class="form-control" name="address" id="address" v-model="obj.address" cols="30"
                     rows="10"></textarea>
             </div>
             <div class="phone mb-2">
                 <label class="form-label" for="phone">Telefon Numarası</label>
-                <input class="form-control" type="number" id="phone" v-model="phone">
+                <input class="form-control" type="number" id="phone" v-model="obj.phone">
             </div>
             <button class="btn btn-primary my-3" type="submit">Sipariş Ver</button>
         </form>
@@ -33,32 +33,34 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
     data() {
         return {
-            name: "",
-            surname: "",
-            city: "",
-            address: "",
-            phone: "",
+            obj: {
+                name: "",
+                surname: "",
+                city: "",
+                address: "",
+                phone: "",
+            }
         }
     },
     methods: {
         async handleSubmit() {
             let result = await axios.post("https://jsonplaceholder.typicode.com/posts", {
-                name: this.name,
-                surname: this.surname,
-                city: this.city,
-                address: this.address,
-                phone: this.phone
+                name: this.obj.name,
+                surname: this.obj.surname,
+                city: this.obj.city,
+                address: this.obj.address,
+                phone: this.obj.phone
             });
             console.log(result);
-            this.name = ""
-            this.surname = ""
-            this.city = ""
-            this.address = ""
-            this.phone = ""
+            this.obj.name = ""
+            this.obj.surname = ""
+            this.obj.city = ""
+            this.obj.address = ""
+            this.obj.phone = ""
         }
     }
 }

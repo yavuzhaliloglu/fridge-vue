@@ -4,7 +4,7 @@
         <p class="product-name my-2">{{ product.name }}</p>
         <div class="product-buttons">
             <button @click="addProduct()" class="btn me-1 btn-sm btn-success">Ekle</button>
-            <button @click="removeProduct(product)" class="btn btn-sm btn-outline-danger">Çıkar</button>
+            <button @click="removeProduct()" class="btn btn-sm btn-outline-danger">Çıkar</button>
         </div>
     </div>
 </template>
@@ -26,8 +26,8 @@ export default {
         addProduct() {
             this.$store.dispatch('addProductToFridge', this.product)
         },
-        removeProduct(product) {
-            this.$store.dispatch('removeProductFromFridge', product)
+        removeProduct() {
+            this.$store.dispatch('removeProductFromFridge', this.product)
         }
     }
 }
@@ -38,13 +38,12 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 180px;
-    min-height: 200px;
+    height: 150px;
     align-items: center;
 
     &-img {
-        max-width: 100px;
-        height: 100px;
+        width: 75px;
+        height: 75px;  
     }
 
 

@@ -1,23 +1,27 @@
 <template>
     <div class="fridge-all my-5">
-        <div class="fridge-container mx-auto">
-            <div v-for="(product, item) in products" :key="item">
+        <div class="fridge-container">
+            <div class="item d-inline-block" v-for="(product, index) in products" :key="index">
                 <img class="product-img" :src='product.img' />
             </div>
             <div @click="toggleClass" class="fridge-kapak">
                 <div class="kapak-inner">
                     <div class="kapak-back">
-                        
+                        <div class="item d-inline-block" v-for="(product, index) in products2" :key="index">
+                            <img class="product-img" :src='product.img' />
+                        </div>
                     </div>
                     <div class="kapak-front">
-        
                     </div>
 
                 </div>
             </div>
         </div>
+        <div class="vol-text mt-3">
+            <p>Kalan Hacim: {{ fridgevol }} Lt</p>
+        </div>
     </div>
-    <p>Kalan Hacim: {{ fridgevol }} Lt</p>
+
 </template>
 
 <script>
@@ -30,6 +34,10 @@ export default {
         },
         fridgevol: {
             type: Number,
+            required: true
+        },
+        products2: {
+            type: Array,
             required: true
         }
     },
@@ -54,17 +62,20 @@ export default {
 
 <style lang="scss" scoped>
 .fridge-all {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
     .fridge-container {
         border: .2px solid black;
-        display: flex;
-        flex-wrap: wrap;
-        width: 400px;
-        height: 500px;
+        width: 228px;
+        height: 375px;
         position: relative;
 
         .fridge-kapak {
-            width: 400px;
-            height: 500px;
+            width: 228px;
+            height: 375px;
             position: absolute;
             top: 0;
             left: 0;
@@ -75,7 +86,7 @@ export default {
                 position: relative;
                 width: 100%;
                 height: 100%;
-                transform: .6s;
+                transform: .6s ease all;
                 transform-style: preserve-3d;
 
                 .kapak-front,
@@ -106,8 +117,8 @@ export default {
     }
 
     .product-img {
-        max-width: 100px;
-        max-height: 100px;
+        width: 75px;
+        height: 75px;
     }
 }
 </style>

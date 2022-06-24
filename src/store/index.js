@@ -1,8 +1,10 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
+
 const store = createStore({
     state: {
-        fridgevol: 200,
-        totalvol: 200,
+        fridgevol: 600,
+        totalvol: 600,
         products: [
             { id: 1, vol: 5, name: "yumurta", img: 'https://pngimg.com/uploads/egg/egg_PNG40783.png' },
             { id: 2, vol: 15, name: "su", img: 'https://pngimg.com/uploads/water_bottle/water_bottle_PNG98959.png' },
@@ -13,26 +15,39 @@ const store = createStore({
             { id: 7, vol: 25, name: "karpuz", img: 'https://pngimg.com/uploads/watermelon/watermelon_PNG234.png' },
         ],
         productsinfridge: [],
+        productsinkapak: []
     },
     mutations: {
         ADD_PRODUCT: (state, item) => {
-            state.productsinfridge.push(item);
+            let fridgevol = state.productsinfridge.length;
+            let kapakvol = state.productsinkapak.length;
+            // if ((item.id === 1 && kapakvol !== 15) || fridgevol === 15) {
+            //     state.productsinkapak.push(item);
+            //     return
+            // }
+            // if (item.id !== 1 && fridgevol === 15) {
+            //     state.productsinfridge.push(item);
+            // }
+
+            if(fridgevol === 15 && kapakvol === 15){
+                return
+            }
+            if((item.id === 1 && kapakvol !== 15) || fridgevol === 15){
+                state.productsinkapak.push(item);
+            }
+            else if(item.id !==1){
+                state.productsinfridge.push(item)
+            }
+
         },
         REMOVE_PRODUCT: (state, item) => {
+            state.productsinkapak = state.productsinkapak.filter(element => {
+                return element.id !== item.id
+            })
             state.productsinfridge = state.productsinfridge.filter(element => {
                 return element.id !== item.id;
             })
         },
-        SHOW_VOLUME: (state,products) =>{
-            let fvol = state.fridgevol;
-            let total = 0;
-            products.forEach(element => {
-                total += element.vol;
-            });
-            console.log(fvol)
-            console.log(total)
-            state.totalvol =  fvol - total;
-        }
     },
     actions: {
         addProductToFridge: ({ commit }, product) => {
@@ -41,9 +56,7 @@ const store = createStore({
         removeProductFromFridge: ({ commit }, product) => {
             commit('REMOVE_PRODUCT', product);
         },
-        showVol:({commit},products) =>{
-            commit('SHOW_VOLUME',products)
-        },
+
     },
     getters: {
         getFridgeVol(state) {
@@ -54,7 +67,10 @@ const store = createStore({
         },
         getFridgeProducts(state) {
             return state.productsinfridge;
-        }
+        },
+        getKapakProducts(state) {
+            return state.productsinkapak;
+        },
     }
 
 

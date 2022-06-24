@@ -1,17 +1,7 @@
-<!-- <script setup>
-import FridgeComponent from '../components/FridgeComponent.vue';
-import ProductsComponent from '../components/ProductsComponent.vue';
-import { ref, computed } from '@vue/reactivity';
-
-const products = ref(this.$store.state.products)
-
-const getproducts = computed(() => {return products.value})
-</script> -->
-
 <template>
   <main>
     <div class="main">
-      <FridgeComponent :products="productsinfridge" :fridgevol="fridgevol" />
+      <FridgeComponent :products="productsinfridge" :products2="productsinkapak" :fridgevol="fridgevol" />
       <ProductsComponent :products="products" />
     </div>
   </main>
@@ -36,23 +26,29 @@ export default {
     productsinfridge() {
       return this.$store.getters.getFridgeProducts
     },
+    productsinkapak() {
+      return this.$store.getters.getKapakProducts
+    },
     fridgevol() {
       let fvol = this.$store.state.fridgevol;
       let total = 0;
-      this.productsinfridge.forEach(item=>{
-          total+=item.vol
+      this.productsinfridge.forEach(item => {
+        total += item.vol;
       });
+      this.productsinkapak.forEach(item =>{
+        total+=item.vol;
+      })
       return fvol - total;
+
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.main{
-  height: 100vh;
+.main {
+  
 }
-
 </style>
 
 
