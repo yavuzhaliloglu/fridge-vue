@@ -1,5 +1,5 @@
 <template>
-    <div class="products-container mx-auto">
+    <div class="products-container mx-auto my-5">
         <div class="product-item" v-for="(product, item) in products" :key="item">
             <ProductForFridge :product="product"/>
         </div>
@@ -24,6 +24,10 @@ export default {
 
 <style lang="scss" scoped>
 .products-container {
+    width: 30%;
+    @media screen and(max-width:1200px){
+        width: 45%;
+    }
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

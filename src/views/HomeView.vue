@@ -46,8 +46,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  
+.main{
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
 

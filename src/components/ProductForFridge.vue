@@ -1,6 +1,6 @@
 <template>
     <div class="product">
-        <img class="product-img" :src='product.img' alt="" />
+        <ProductinFridge :product="product"/>
         <p class="product-name my-2">{{ product.name }}</p>
         <div class="product-buttons">
             <button @click="addProduct()" class="btn me-1 btn-sm btn-success">Ekle</button>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import ProductinFridge from './ProductinFridge.vue'
 export default {
     props: {
         product: {
@@ -18,18 +19,17 @@ export default {
         }
     },
     data() {
-        return {
-
-        }
+        return {};
     },
     methods: {
         addProduct() {
-            this.$store.dispatch('addProductToFridge', this.product)
+            this.$store.dispatch("addProductToFridge", this.product);
         },
         removeProduct() {
-            this.$store.dispatch('removeProductFromFridge', this.product)
+            this.$store.dispatch("removeProductFromFridge", this.product);
         }
-    }
+    },
+    components: { ProductinFridge }
 }
 </script>
 
@@ -43,9 +43,8 @@ export default {
 
     &-img {
         width: 75px;
-        height: 75px;  
+        height: 75px;
     }
-
 
     &-name {
         font-size: 18px;
