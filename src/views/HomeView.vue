@@ -30,16 +30,8 @@ export default {
       return this.$store.getters.getKapakProducts
     },
     fridgevol() {
-      let fvol = this.$store.state.fridgevol;
-      let total = 0;
-      this.productsinfridge.forEach(item => {
-        total += item.vol;
-      });
-      this.productsinkapak.forEach(item =>{
-        total+=item.vol;
-      })
-      return fvol - total;
-
+      this.$store.dispatch('updateFridgeVol')
+      return this.$store.getters.getFridgeVol
     }
   }
 }

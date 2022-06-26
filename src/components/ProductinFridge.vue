@@ -1,6 +1,6 @@
 <template>
     <div class="item-container">
-        <img class="product-img" :src='product.img' />
+        <img class="product-img" :style="{width:(product.vol*3)-5 + 'px', height:(product.vol*3) + 'px'}" :src='product.img' />
     </div>
 </template>
 
@@ -24,6 +24,9 @@ export default {
 .item-container{
     width: 75px;
     height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .product-img{
     max-width: 75px;

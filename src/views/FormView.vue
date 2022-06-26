@@ -25,7 +25,9 @@
             </div>
             <div class="phone mb-2">
                 <label class="form-label" for="phone">Telefon Numarası</label>
-                <input class="form-control" type="number" id="phone" v-model="obj.phone">
+                <input class="form-control" type="tel" id="phone" pattern="[0-9]{11}"
+                    v-model="obj.phone">
+                <div class="form-text">Lütfen telefon numaranızı bu şekilde girin: 05xxxxxxxxx</div>
             </div>
             <button class="btn btn-primary my-3" type="submit">Sipariş Ver</button>
         </form>
@@ -33,7 +35,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     data() {
         return {
@@ -47,20 +48,8 @@ export default {
         }
     },
     methods: {
-        async handleSubmit() {
-            let result = await axios.post("https://jsonplaceholder.typicode.com/posts", {
-                name: this.obj.name,
-                surname: this.obj.surname,
-                city: this.obj.city,
-                address: this.obj.address,
-                phone: this.obj.phone
-            });
-            console.log(result);
-            this.obj.name = ""
-            this.obj.surname = ""
-            this.obj.city = ""
-            this.obj.address = ""
-            this.obj.phone = ""
+        handleSubmit() {
+            this.$store.dispatch('formPost', this.obj);
         }
     }
 }
@@ -82,6 +71,10 @@ export default {
 
         @media screen and(max-width:900px) {
             width: 100%;
+        }
+
+        .form-text{
+            font-size: 12px;
         }
     }
 }

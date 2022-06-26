@@ -47,6 +47,27 @@ const store = createStore({
                 return
             }
         },
+        UPDATE_VOL: (state) => {
+            let fvol = state.fridgevol;
+            let total = 0;
+            state.productsinfridge.forEach(item => {
+                total += item.vol;
+            });
+            state.productsinkapak.forEach(item => {
+                total += item.vol;
+            });
+            state.totalvol = fvol - total;
+        },
+        POST_FORM: async (state, obj) => {
+            let result = await axios.post('https://jsonplaceholder.typicode.com/posts',{
+                name: obj.name,
+                surname: obj.surname,
+                city: obj.city,
+                address: obj.address,
+                phone: obj.phone
+            });
+            console.log(result)
+        }
     },
     actions: {
         addProductToFridge: ({ commit }, product) => {
@@ -55,12 +76,14 @@ const store = createStore({
         removeProductFromFridge: ({ commit }, product) => {
             commit('REMOVE_PRODUCT', product);
         },
-
+        updateFridgeVol: ({ commit }) => {
+            commit('UPDATE_VOL');
+        },
+        formPost: ({ commit }, obj) => {
+            commit('POST_FORM', obj);
+        }
     },
     getters: {
-        getFridgeVol(state) {
-            return state.fridgevol;
-        },
         getProducts(state) {
             return state.products;
         },
@@ -70,9 +93,10 @@ const store = createStore({
         getKapakProducts(state) {
             return state.productsinkapak;
         },
+        getFridgeVol(state) {
+            return state.totalvol;
+        }
     }
-
-
 })
 
 export default store
