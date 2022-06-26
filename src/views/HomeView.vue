@@ -1,6 +1,11 @@
 <template>
   <main>
     <div class="main">
+      <div class="main-content mx-auto mt-4">
+        <h1>Buzdolabımızın Hacmini Test Edin</h1>
+        <p>Buzdolabımızın hacmini mağazamıza gelmeden test edebilirsiniz. Yandaki ürünleri buzdolabına ekleyin veya
+          çıkartın.</p>
+      </div>
       <FridgeComponent :products="productsinfridge" :products2="productsinkapak" :fridgevol="fridgevol" />
       <ProductsComponent :products="products" />
     </div>
@@ -38,9 +43,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main{
+.main {
   display: flex;
   flex-wrap: wrap;
+
+  &-content h1,p{
+    text-align: center;
+  }
 }
 </style>
 

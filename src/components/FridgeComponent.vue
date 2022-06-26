@@ -2,7 +2,6 @@
     <div class="fridge-all my-5">
         <div class="fridge-container">
             <div class="item" v-for="(product, index) in products" :key="index">
-                
                 <ProductinFridge :product="product" />
             </div>
             <div @click="toggleClass" class="fridge-kapak">
@@ -16,7 +15,6 @@
                         <div class="kapak-front-ust"></div>
                         <div class="kapak-front-alt"></div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -24,7 +22,6 @@
             <p>Kalan Hacim: <span class="fridgevol fw-bold">{{ fridgevol }} Lt</span></p>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -66,9 +63,11 @@ export default {
 <style lang="scss" scoped>
 .fridge-all {
     width: 60%;
-    @media screen and (max-width:1200px){
-        width:55%
+
+    @media screen and (max-width:1200px) {
+        width: 55%
     }
+
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -155,7 +154,7 @@ export default {
                     }
 
                     &-alt {
-                        height: 250px;
+                        height: 280px;
                         width: 100%;
                         position: relative;
 

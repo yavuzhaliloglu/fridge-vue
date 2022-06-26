@@ -58,7 +58,7 @@ const store = createStore({
             });
             state.totalvol = fvol - total;
         },
-        POST_FORM: async (state, obj) => {
+        POST_FORM: async (obj) => {
             let result = await axios.post('https://jsonplaceholder.typicode.com/posts',{
                 name: obj.name,
                 surname: obj.surname,
@@ -66,7 +66,7 @@ const store = createStore({
                 address: obj.address,
                 phone: obj.phone
             });
-            console.log(result)
+            console.log(result);
         }
     },
     actions: {
